@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +16,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UINavigationBar.appearance().barTintColor = UIColor.mainColor
+        let backButtonImage = UIImage(named: "backButton.png")
+        UINavigationBar.appearance().backIndicatorImage = backButtonImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
 
+        // Set up the Realm migration configuration
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 1 {
+                    // Nothing to do, since the schema has only been changed in version 1
+                }
+            }
+        )
 
+        // Tell Realm to use this new configuration object for the default Realm
+        Realm.Configuration.defaultConfiguration = config
+
+        // Now that we've told Realm how to handle the schema change, opening the file will automatically perform the migration
+        let realm = try! Realm()
+
+        if realm.objects(SettingData.self).count == 0 {
+            // SettingData 객체가 없으면 생성하고 초기값 설정
+            let settingData = SettingData()
+            for _ in 0..<6 {
+                settingData.values.append("")
+            }
+            try! realm.write {
+                realm.add(settingData)
+            }
+        }
         return true
     }
 
