@@ -1,24 +1,38 @@
 PODS:
   - FSCalendar (2.8.4)
+  - MagicTimer (1.0.4)
+  - Realm (10.38.0):
+    - Realm/Headers (= 10.38.0)
+  - Realm/Headers (10.38.0)
+  - RealmSwift (10.38.0):
+    - Realm (= 10.38.0)
   - SnapKit (5.6.0)
   - Then (3.0.0)
 
 DEPENDENCIES:
   - FSCalendar
+  - MagicTimer
+  - RealmSwift (~> 10)
   - SnapKit
   - Then
 
 SPEC REPOS:
   trunk:
     - FSCalendar
+    - MagicTimer
+    - Realm
+    - RealmSwift
     - SnapKit
     - Then
 
 SPEC CHECKSUMS:
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
+  MagicTimer: e39ab4d63c759eed0cee34f521002f099bdcc472
+  Realm: 5902885dd1d5e71b0b020830caab937ecdf5bf07
+  RealmSwift: 0fc037d6c32c7c4fc9362892380f380114ecdcf0
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 8014a00c8889c81e74f537486b9afc14d8d5e776
+PODFILE CHECKSUM: 0a8f228b6700159238e3391962c56f187ab3aa90
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.10.0
